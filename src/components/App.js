@@ -39,59 +39,63 @@ const reviews = [
     },
 ];
 
-const Review = ({ id, name, job, image, text }) => {
+const Review = ({ id, name, job, image, text, prevReview }) => {
     return (
-        <article className="review">
-            <div className="person-img">
-                <img src={image} alt={name} />
-            </div>
-            <h4 className="author" id={`author-${id}`}>
-                {name}
-            </h4>
-            <p className="job">{job}</p>
-            <p className="info">{text}</p>
-        </article>
-    );
-};
-
-const App = () => {
-    const [index, setIndex] = useState(0);
-
-    const { name, job, image, text } = reviews[index];
-
-    const nextReview = () => {
-        setIndex((prevIndex) => (prevIndex + 1) % reviews.length);
-    };
-
-    const prevReview = () => {
-        setIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
-    };
-
-    const randomReview = () => {
-        let randomIndex;
-        do {
-            randomIndex = Math.floor(Math.random() * reviews.length);
-        } while (randomIndex === index);
-        setIndex(randomIndex);
-    };
-
-    return (
-        <div className="container">
-            <h2 id="review-heading">Our Reviews</h2>
-            <Review id={index + 1} name={name} job={job} image={image} text={text} />
-            <div className="btn-container">
-                <button className="prev-btn" onClick={prevReview}>
-                    Previous
-                </button>
-                <button className="next-btn" onClick={nextReview}>
-                    Next
-                </button>
-                <button className="random-btn" onClick={randomReview}>
-                    Surprise Me
-                </button>
-            </div>
+      <article className="review">
+        <div className="person-img">
+          <img src={image} alt={name} />
         </div>
+        <h4 className="author" id={`author-${id}`}>
+          {name}
+        </h4>
+        <p className="job">{job}</p>
+        <p className="info">{text}</p>
+        <button className="prev-btn" onClick={prevReview}>
+          Previous
+        </button>
+      </article>
     );
-};
-
-export default App;
+  };
+  
+  const App = () => {
+    const [index, setIndex] = useState(0);
+  
+    const { id, name, job, image, text } = reviews[index];
+  
+    const nextReview = () => {
+      setIndex((prevIndex) => (prevIndex + 1) % reviews.length);
+    };
+  
+    const prevReview = () => {
+      setIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
+    };
+  
+    const randomReview = () => {
+      let randomIndex;
+      do {
+        randomIndex = Math.floor(Math.random() * reviews.length);
+      } while (randomIndex === index);
+      setIndex(randomIndex);
+    };
+  
+    return (
+      <div className="container">
+        <h2 id="review-heading">Our Reviews</h2>
+        <Review id={id} name={name} job={job} image={image} text={text} prevReview={prevReview} />
+        <div className="btn-container">
+          <button className="prev-btn" onClick={prevReview}>
+            Previous
+          </button>
+          <button className="next-btn" onClick={nextReview}>
+            Next
+          </button>
+          <button className="random-btn" onClick={randomReview}>
+            Surprise Me
+          </button>
+        </div>
+      </div>
+    );
+  };
+  
+  export default App;
+  
