@@ -39,58 +39,67 @@ const reviews = [
     },
 ];
 
-const Review = ({ id, name, job, image, text, prevReview }) => {
+const Review = ({ id, name, job, image, text, prevReview, nextReview, randomReview }) => {
     return (
-      <article className="review">
-        <div className="person-img">
-          <img src={image} alt={name} />
-        </div>
-        <h4 className="author" id={`author-${id}`}>
-          {name}
-        </h4>
-        <p className="job">{job}</p>
-        <p className="info">{text}</p>
-        <button className="prev-btn" onClick={prevReview}>
-          Previous
-        </button>
-        <button className="next-btn" onClick={nextReview}>
-            Next
-          </button>
-          <button className="random-btn" onClick={randomReview}>
-            Surprise Me
-          </button>
-      </article>
+        <article className="review">
+            <div className="person-img">
+                <img src={image} alt={name} />
+            </div>
+            <h4 className="author" id={`author-${id}`}>
+                {name}
+            </h4>
+            <p className="job">{job}</p>
+            <p className="info">{text}</p>
+            <button className="prev-btn" onClick={prevReview}>
+                Previous
+            </button>
+            <button className="next-btn" onClick={nextReview}>
+                Next
+            </button>
+            <button className="random-btn" onClick={randomReview}>
+                Surprise Me
+            </button>
+        </article>
     );
-  };
-  
-  const App = () => {
+};
+
+const App = () => {
     const [index, setIndex] = useState(0);
-  
+
     const { id, name, job, image, text } = reviews[index];
-  
+
     const nextReview = () => {
-      setIndex((prevIndex) => (prevIndex + 1) % reviews.length);
+        setIndex((prevIndex) => (prevIndex + 1) % reviews.length);
     };
-  
+
     const prevReview = () => {
-      setIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
+        setIndex((prevIndex) => (prevIndex - 1 + reviews.length) % reviews.length);
     };
-  
+
     const randomReview = () => {
-      let randomIndex;
-      do {
-        randomIndex = Math.floor(Math.random() * reviews.length);
-      } while (randomIndex === index);
-      setIndex(randomIndex);
+        let randomIndex;
+        do {
+            randomIndex = Math.floor(Math.random() * reviews.length);
+        } while (randomIndex === index);
+        setIndex(randomIndex);
     };
-  
+
     return (
-      <div className="container">
-        <h2 id="review-heading">Our Reviews</h2>
-        <Review id={id} name={name} job={job} image={image} text={text} prevReview={prevReview} />
-      </div>
+        <div className="container">
+            <h2 id="review-heading">Our Reviews</h2>
+            <Review
+                id={id}
+                name={name}
+                job={job}
+                image={image}
+                text={text}
+                prevReview={prevReview}
+                nextReview={nextReview}
+                randomReview={randomReview}
+            />
+        </div>
     );
-  };
-  
-  export default App;
-  
+};
+
+export default App;
+
