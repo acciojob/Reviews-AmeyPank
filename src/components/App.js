@@ -57,7 +57,7 @@ const Review = ({ id, name, job, image, text, prevReview, nextReview, randomRevi
                 Next
             </button>
             <button className="random-btn" onClick={randomReview}>
-                Surprise Me
+                surprise me
             </button>
         </article>
     );
