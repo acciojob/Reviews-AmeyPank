@@ -53,6 +53,12 @@ const Review = ({ id, name, job, image, text, prevReview }) => {
         <button className="prev-btn" onClick={prevReview}>
           Previous
         </button>
+        <button className="next-btn" onClick={nextReview}>
+            Next
+          </button>
+          <button className="random-btn" onClick={randomReview}>
+            Surprise Me
+          </button>
       </article>
     );
   };
@@ -82,17 +88,6 @@ const Review = ({ id, name, job, image, text, prevReview }) => {
       <div className="container">
         <h2 id="review-heading">Our Reviews</h2>
         <Review id={id} name={name} job={job} image={image} text={text} prevReview={prevReview} />
-        <div className="btn-container">
-          <button className="prev-btn" onClick={prevReview}>
-            Previous
-          </button>
-          <button className="next-btn" onClick={nextReview}>
-            Next
-          </button>
-          <button className="random-btn" onClick={randomReview}>
-            Surprise Me
-          </button>
-        </div>
       </div>
     );
   };
